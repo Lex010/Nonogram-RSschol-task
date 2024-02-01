@@ -1,0 +1,280 @@
+html {
+    height: 100%;
+    background-color: grey;
+}
+body {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    height: 100%;
+    background-color: blanchedalmond;
+    user-select: none;
+  }
+  .block1 {  /* КНОПКИ УПРАВЛЕНИЯ  */
+    flex: 7%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px 5px 0 5px;
+  }
+  .block2 {   /* ВЫБОР РАЗМЕРА ПОЛЯ */
+    flex: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+  }
+  .block3 {   /* ВЫБОР НАЗВАНИЯ ПОЛЯ */
+    flex: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+  }
+  .block4 { /* ТАЙМЕР */
+    flex: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+  }
+  .block5 {   /* ИГРОВОЕ ПОЛЕ */
+    flex: 72%;
+    /* box-sizing: border-box;  добавить при необходимости*/
+  }
+  /* СОЗДАЕМ ПОЛЕ */
+  .block5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
+    /* gap: 1px; */
+    border-bottom: 2px solid #333;
+    border-right: 2px solid #333;
+}
+
+.cell {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.clicked {
+    background-color: black;
+}
+.crossed {
+    position: relative;
+}
+.crossed::before,
+.crossed::after {
+    content: '';
+    position: absolute;
+    background-color: black;
+    border-radius: 100px;
+}
+.crossed::before {
+    top: -10%;
+    left: 45%;
+    width: 10%;
+    height: 120%;
+    transform: rotate(45deg);
+}
+.crossed::after {
+    top: 45%;
+    left: -10%;
+    width: 120%;
+    height: 10%;
+    transform: rotate(45deg);
+}
+.cell-border-right {
+    border-right: 2px solid #333;
+}
+.cell-border-bottom {
+    border-bottom: 2px solid #333;
+}
+/* //СОЗДАЮ КНОПКИ ВЫБОРА РАЗМЕРА ПОЛЯ */
+.left-button-size-field {
+    width: 30px;
+    height: 30px;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+.size-field {
+    max-height: 30px;
+    max-width: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+.right-button-size-field {
+    width: 30px;
+    height: 30px;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+/* //КНОПКА ВЫБОРА ПОЛЯ(ИМЕНИ) */
+.left-button-name-field {
+    width: 30px;
+    height: 30px;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+.name-field {
+    max-height: 30px;
+    max-width: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+.right-button-name-field {
+    width: 30px;
+    height: 30px;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.first-column {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.first-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    white-space: pre-line;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+/* МЕНЮ УПРАВЛЕНИЯ */
+.save-load,
+.result-and-themes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.save,
+.load,
+.reset,
+.random,
+.show-solution,
+.result-list,
+.themes {
+    border-radius: 10px;
+    white-space: pre-line; /* Для работы \n*/
+}
+button:active {
+    background-color: red;
+}
+.active {
+    background-color: red;
+}
+.solution { /*ПОДСВЕТКА РЕШЕНИЯ*/
+    background-color: green;
+}
+/* Модальное окно для топ 5 */
+.modal-top-five {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal-top-five ol {
+    background-color: blanchedalmond;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 7%;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+    white-space: pre-line; /* Для работы \n*/
+}
+.modal-top-five li {
+    margin-top: 10px;
+}
+.modal-top-five button {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 1%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* МОДАЛЬНОЕ ОКНО ПОБЕДЫ */
+.modal-victory {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.modal-victory__button {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+/* ФУНКЦИЯ СМЕНЫ ТЕМЫ (ДЕНЬ\НОЧЬ) */
+body.dark-theme {
+    background-color: #333;
+    color: #ccc;
+}
+body.dark-theme .game-container {
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+}
+body.dark-theme .cell {
+    background-color: #888;
+    /* border: 1px solid #fff; */
+}
+body.dark-theme .cell.clicked {
+    background-color: rgb(0, 51, 59);
+}
+body.dark-theme .cell-border-bottom {
+    border-bottom: 2px solid #fff;       
+}
+body.dark-theme .cell-border-right{
+    border-right: 2px solid #fff;
+}
+body.dark-theme button {
+    background-color: rgba(0, 90, 105, 0.521);
+    color: #ccc;
+}
+body.dark-theme button:active {
+    background-color: red;
+}
+body.dark-theme .active {
+    background-color: red;
+}
+body.dark-theme .cell.solution { /*ПОДСВЕТКА РЕШЕНИЯ*/
+    background-color: yellow;
+}
+body.dark-theme .modal-top-five ol {
+    background-color: #444;
+}
